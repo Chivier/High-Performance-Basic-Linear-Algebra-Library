@@ -10,4 +10,5 @@ High Performance Basic Linear Algebra Library, abbreviated as HiPBAaLALy, aims t
 
 - Yijie Fu. @FuYijie-0.
 
-- Feng Yu.
+- Feng Yu. @hubaak.
+
