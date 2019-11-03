@@ -6,9 +6,8 @@ High Performance Basic Linear Algebra Library, abbreviated as Hipala, aims to bu
 
 ## Group Member
 
-- Yeqi Huang.  @Chivier, Group Leader.
-- Feng Yu.
-- Ao Wang.
-- Jinchen Yao.
-- Zihao Sun.
-- Junjie Shen.
+- Yeqi Huang. @Chivier, Group Leader.
+- Feng Yu. @hubaak.
+- Ao Wang. @newphycoder.
+- Zihao Sun. @Flashswords.
+- Junjie Shen. @MuYanustc.
