@@ -5,21 +5,21 @@
 
 #define HIPALA_VECTOR_MAX_SIZE 2000
 
-typedef struct Hipala_Matrix_Type {
+typedef struct Hipala_Vector_Type {
     int len;
     double num[HIPALA_VECTOR_MAX_SIZE];
 
-    Hipala_Matrix_Type() {
+    Hipala_Vector_Type() {
         len = 0;
         memset(num, 0, sizeof(num));
     }
-} Mat_;
+} Vec_;
 
-Mat_ operator+(Mat_ Mat_a, Mat_ Mat_b) {
+Vec_ operator+(Vec_ Vec_a, Vec_ Vec_b) {
 }
 
-Mat_ operator-(Mat_ Mat_a, Mat_ Mat_b) {
+Vec_ operator-(Vec_ Vec_a, Vec_ Vec_b) {
 }
 
-Mat_ operator*(Mat_ Mat_a, Mat_ Mat_b) {
+Vec_ operator*(Vec_ Vec_a, Vec_ Vec_b) {
 }
