@@ -1,4 +1,5 @@
-#pragma once
+#ifndef HIPALA_VECTOR_H
+#define HIPALA_VECTOR_H
 
 #include <stdlib.h>
 #include <string.h>
@@ -15,11 +16,4 @@ typedef struct Hipala_Vector_Type {
     }
 } Vec_;
 
-Vec_ operator+(Vec_ Vec_a, Vec_ Vec_b) {
-}
-
-Vec_ operator-(Vec_ Vec_a, Vec_ Vec_b) {
-}
-
-Vec_ operator*(Vec_ Vec_a, Vec_ Vec_b) {
-}
+#endif
