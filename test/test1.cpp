@@ -32,4 +32,12 @@ int main() {
     cout << "\n\nc = \n";
     c = a + b;
     c.output_mat();
+    Hipala_Matrix_Type<int> d(2, 2);
+    cout << "\n\nd = \n";
+    d = a - b;
+    d.output_mat();
+    Hipala_Matrix_Type<int> e(2, 2);
+    cout << "\n\ne = \n";
+    e = a * b;
+    e.output_mat();
 }

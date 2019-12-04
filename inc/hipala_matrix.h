@@ -182,17 +182,48 @@ Hipala_Matrix_Type<T> Hipala_Matrix_Type<T>::operator+(Hipala_Matrix_Type<T> oth
     return Matc;
 }
 
+// * Operation overlading: -
+// * Function:
+// * minus two matrix
 template <class T>
 Hipala_Matrix_Type<T> Hipala_Matrix_Type<T>::operator-(Hipala_Matrix_Type<T> other) {
-    // todo
-    Hipala_Matrix_Type<T> Matc;
+    if (row != other.row || col != other.col) {
+        Hipala_Matrix_Type<T> Error(-1);
+        return Error;
+    }
+
+    Hipala_Matrix_Type<T> Matc(row, col);
+
+    for (int rowloop = 0; rowloop < row; rowloop++) {
+        for (int colloop = 0; colloop < col; colloop++) {
+            Matc.modify(rowloop, colloop, this->element(rowloop, colloop) - other.element(rowloop, colloop));
+        }
+    }
     return Matc;
 }
 
+// * Operation overlading: *
+// * Function:
+// * multiply two matrix
 template <class T>
 Hipala_Matrix_Type<T> Hipala_Matrix_Type<T>::operator*(Hipala_Matrix_Type<T> other) {
-    // todo
-    Hipala_Matrix_Type<T> Matc;
+    if (col != other.row) {
+        Hipala_Matrix_Type<T> Error(-1);
+        return Error;
+    }
+
+    Hipala_Matrix_Type<T> Matc(row,other.col);
+
+    for (int rowloop = 0; rowloop < row; rowloop++) {
+        for (int colloop = 0; colloop < other.col; colloop++) {
+            // can be replaced by inner produce of vector
+            T inner = 0;
+            for (int prdloop = 0; prdloop < col; prdloop++) {
+                inner += this->element(rowloop, prdloop) * other.element(prdloop, colloop);
+            }
+            Matc.modify(rowloop, colloop, inner);
+        }
+    }
     return Matc;
 }
 
