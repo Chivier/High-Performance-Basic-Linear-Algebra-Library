@@ -71,10 +71,8 @@ int Hipala_Matrix_Type<T>::show_row() {
 // * Method name: show_col
 // * Function:
 // * show the col of the matrix
-// * Input:
-// * None
-// * Output:
-// * the col number of this matrix
+// * Input: None
+// * Output: the col number of this matrix
 template <class T>
 int Hipala_Matrix_Type<T>::show_col() {
     return col;
@@ -154,8 +152,7 @@ void Hipala_Matrix_Type<T>::operator=(Hipala_Matrix_Type<T> other) {
         Hipala_Matrix_Type<T> Error(-1);
         row = col = -1;
         return;
-    }
-
+	}
     for (int rowloop = 0; rowloop < other.row; ++rowloop)
         for (int colloop = 0; colloop < other.col; ++colloop) {
             this->modify(rowloop, colloop, other.element(rowloop, colloop));
@@ -184,15 +181,40 @@ Hipala_Matrix_Type<T> Hipala_Matrix_Type<T>::operator+(Hipala_Matrix_Type<T> oth
 
 template <class T>
 Hipala_Matrix_Type<T> Hipala_Matrix_Type<T>::operator-(Hipala_Matrix_Type<T> other) {
-    // todo
-    Hipala_Matrix_Type<T> Matc;
+	// todo
+	if (row != other.row || col != other.col) {
+        Hipala_Matrix_Type<T> Error(-1);
+        return Error;
+    }
+    
+    Hipala_Matrix_Type<T> Matc(row,col);
+    
+    for (int rowloop = 0; rowloop < row; rowloop++) {
+        for (int colloop = 0; colloop < col; colloop++) {
+            Matc.modify(rowloop, colloop, this->element(rowloop, colloop) - other.element(rowloop, colloop));
+        }
+    }
     return Matc;
 }
 
 template <class T>
 Hipala_Matrix_Type<T> Hipala_Matrix_Type<T>::operator*(Hipala_Matrix_Type<T> other) {
     // todo
-    Hipala_Matrix_Type<T> Matc;
+    if (col != other.row) {
+        Hipala_Matrix_Type<T> Error(-1);
+        return Error;
+    }
+    
+    T temp;
+    Hipala_Matrix_Type<T> Matc(row,other.col);
+    
+    for(int rowloop = 0;rowloop < row; rowloop++)
+    	for(int colloop = 0; colloop < other.col; colloop++){
+    		temp=element(rowloop, 0) * other.element(0, colloop);
+    		for(int __loop = 1; __loop < col; __loop++)
+    			temp+=element(rowloop, __loop) * other.element(__loop, colloop);
+    		Matc.modify(rowloop, colloop, temp);
+		}
     return Matc;
 }
 

@@ -30,6 +30,6 @@ int main() {
     //output_int_mat(b);
     Hipala_Matrix_Type<int> c(2, 2);
     cout << "\n\nc = \n";
-    c = a + b;
+    c = a * b;
     c.output_mat();
 }
