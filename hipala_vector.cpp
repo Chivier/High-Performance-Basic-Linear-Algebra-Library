@@ -48,5 +48,5 @@ Vec_ operator*(Vec_ Vec_a, Vec_ Vec_b) {
 	for(i=0;i<l;i++) {
 		s+=Vec_a.num[i]*Vec_b.num[i];
 	}
-	return Vec_a;
+	return Vec_a; //return a vector? 
 }
