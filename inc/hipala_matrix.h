@@ -51,10 +51,10 @@ public:
     void input_mat();
     void output_mat();
 
-    T element(int row, int col);
-    T modify(int rowid, int colid, T num);
+    T element(int rowid, int colid);
+    T modify(int rowid, int colid, T mod);
 
-    Hipala_Matrix_Type<T> sub_mat(int begin_row, int begin_column, int end_row, int end_column);
+    Hipala_Matrix_Type<T> sub_mat(int begin_row, int begin_col, int end_row, int end_col);
     double det_val();
 };
 
@@ -103,7 +103,7 @@ T Hipala_Matrix_Type<T>::element(int rowid, int colid) {
 template <class T>
 T Hipala_Matrix_Type<T>::modify(int rowid, int colid, T mod) {
     num[rowid * (col) + colid] = mod;
-    // puts("modied");
+    // puts("modified");
     // printf("num[%d][%d] modified to ", rowid, colid);
     // std::cout << num[rowid * (col) + colid] << std::endl;
     return mod;
@@ -148,11 +148,8 @@ void Hipala_Matrix_Type<T>::output_mat() {
 // * get a new matrix from right of `=`
 template <class T>
 void Hipala_Matrix_Type<T>::operator=(Hipala_Matrix_Type<T> other) {
-    if (row < other.row || col < other.col) {
-        Hipala_Matrix_Type<T> Error(-1);
-        row = col = -1;
-        return;
-	}
+    row=other.row;
+    col=other.col;
     for (int rowloop = 0; rowloop < other.row; ++rowloop)
         for (int colloop = 0; colloop < other.col; ++colloop) {
             this->modify(rowloop, colloop, other.element(rowloop, colloop));
@@ -161,7 +158,7 @@ void Hipala_Matrix_Type<T>::operator=(Hipala_Matrix_Type<T> other) {
 
 // * Operation overlading: +
 // * Function:
-// * add two matrix
+// * add two matrices
 template <class T>
 Hipala_Matrix_Type<T> Hipala_Matrix_Type<T>::operator+(Hipala_Matrix_Type<T> other) {
     if (row != other.row || col != other.col) {
@@ -208,11 +205,11 @@ Hipala_Matrix_Type<T> Hipala_Matrix_Type<T>::operator*(Hipala_Matrix_Type<T> oth
     T temp;
     Hipala_Matrix_Type<T> Matc(row,other.col);
     
-    for(int rowloop = 0;rowloop < row; rowloop++)
+    for(int rowloop = 0; rowloop < row; rowloop++)
     	for(int colloop = 0; colloop < other.col; colloop++){
-    		temp=element(rowloop, 0) * other.element(0, colloop);
+    		temp=this->element(rowloop, 0) * other.element(0, colloop);
     		for(int __loop = 1; __loop < col; __loop++)
-    			temp+=element(rowloop, __loop) * other.element(__loop, colloop);
+    			temp+=this->element(rowloop, __loop) * other.element(__loop, colloop);
     		Matc.modify(rowloop, colloop, temp);
 		}
     return Matc;
@@ -220,5 +217,20 @@ Hipala_Matrix_Type<T> Hipala_Matrix_Type<T>::operator*(Hipala_Matrix_Type<T> oth
 
 Hipala_Matrix_Type<int> input_int_mat(int row, int col);
 void output_int_mat(Hipala_Matrix_Type<int> M);
+
+
+
+
+//new codes
+/////////////////////////////////////////////////////////////////////////////////
+template <class T>
+Hipala_Matrix_Type<T> Hipala_Matrix_Type<T>::sub_mat(int begin_row, int begin_col, int end_row, int end_col){
+	int Mat_row = end_row - begin_row + 1, Mat_col = end_col - begin_col + 1;
+	Hipala_Matrix_Type<T> Mat(Mat_row, Mat_col);
+	for(int rowloop = 0; rowloop < Mat_row; rowloop++)
+		for(int colloop = 0; colloop < Mat_col; colloop++)
+			modify(rowloop, colloop, this->element(begin_row + rowloop, begin_col + colloop));
+	return Mat;
+}
 
 #endif

@@ -1,10 +1,11 @@
 #include "hipala_matrix.h"
-//#include "hipala_vector.h"
+#include "hipala_vector.h"
 #include <iostream>
 
 using namespace std;
 
 int main() {
+	/*///////////////////////////////
     Hipala_Matrix_Type<int> a(2, 2);
     Hipala_Matrix_Type<int> b(2, 2);
     a.modify(0, 0, 1);
@@ -32,4 +33,23 @@ int main() {
     cout << "\n\nc = \n";
     c = a * b;
     c.output_mat();
+    *////////////////////////////////
+    
+    Hipala_Vector_Type<int> a(4);
+    Hipala_Vector_Type<int> b(4);
+    a.modify(0, 1);
+    a.modify(1, 2);
+    a.modify(2, 3);
+    a.modify(3, 4);
+    b.input_vec();
+    
+    cout << "a = \n";
+    a.output_vec();
+    cout << "\n\nb = \n";
+	b.output_vec();
+	
+	Hipala_Vector_Type<int> c(4);
+	c = a + b;
+	cout << "c = \n";
+	c.output_vec();    
 }
