@@ -16,9 +16,13 @@ private:
 public:
 	Hipala_Vector_Type() : len(0), num(NULL) {}
 	Hipala_Vector_Type(int num_len) : len(num_len) {
-		// std::cout << "len = " << len << std::endl;
-		num = new T[num_len];
-		// std::cout << "Alloc size = " << sizeof(*num);
+		if(num_len > 0){
+			// std::cout << "len = " << len << std::endl;
+			num = new T[num_len];
+			// std::cout << "Alloc size = " << sizeof(*num);
+		}
+		else delete num;
+		
 	}
 	
 	/*
@@ -122,15 +126,15 @@ Hipala_Vector_Type<T> Hipala_Vector_Type<T>::operator-(Hipala_Vector_Type<T> oth
 template <class T>
 T Hipala_Vector_Type<T>::operator*(Hipala_Vector_Type<T> other) {
 	if (len != other.len) {
-        Hipala_Vector_Type<T> Error(-1);
-        return Error;
+        printf("Two vectors which have diferent length cannot be multiplied!");
+        exit(1);
     }
     
 	T result;
 	
-	result = this->element(0) * other.element(0);
+	result = element(0) * other.element(0);
 	for(int loop = 1; loop < len; loop++){
-		result+=this->element(loop) * other.element(loop);
+		result+= element(loop) * other.element(loop);
 	}
 	return result;
 }

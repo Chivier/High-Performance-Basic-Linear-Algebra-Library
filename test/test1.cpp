@@ -49,7 +49,9 @@ int main() {
 	b.output_vec();
 	
 	Hipala_Vector_Type<int> c(4);
+	int mult= a * b;
 	c = a + b;
 	cout << "c = \n";
-	c.output_vec();    
+	c.output_vec();
+	cout << "a*b = "<< mult;
 }
