@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <stdlib.h>
-#include <string.h>
 
 #define HIPALA_MATRIX_MAX_SIZE 2000
 
@@ -93,6 +92,7 @@ T Hipala_Matrix_Type<T>::element(int rowid, int colid) {
     return num[rowid * (col) + colid];
 }
 
+#include <string.h>
 // * Method name: modify
 // * Function:
 // * modify a specific element in the matrix
@@ -229,5 +229,5 @@ Hipala_Matrix_Type<T> Hipala_Matrix_Type<T>::operator*(Hipala_Matrix_Type<T> oth
 
 Hipala_Matrix_Type<int> input_int_mat(int row, int col);
 void output_int_mat(Hipala_Matrix_Type<int> M);
-
+Hipala_Matrix_Type<int> transpose_int_mat(Hipala_Matrix_Type<int> M);
 #endif
