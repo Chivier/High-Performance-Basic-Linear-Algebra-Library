@@ -1,7 +1,7 @@
-#include "hipala_matrix.h"
+#include "..\inc\hipala_matrix.h"
 //#include "hipala_vector.h"
 #include <iostream>
-
+#include<stdlib.h>
 using namespace std;
 
 int main() {
@@ -40,4 +40,9 @@ int main() {
     cout << "\n\ne = \n";
     e = a * b;
     e.output_mat();
+    Hipala_Matrix_Type<int> f(2,2);
+    f=transpose_int_mat(e);
+    cout << "\n\nf = \n"; 
+    f.output_mat();
+    system("pause");
 }
